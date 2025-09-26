@@ -3,6 +3,7 @@ package com.example.note.presentation.create
 import androidx.lifecycle.ViewModel
 import com.example.note.domain.entity.NoteEntity
 import com.example.note.domain.repository.NoteRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
@@ -14,6 +15,7 @@ data class CreateNoteUiState(
     val errorMessage: String? = null,
 )
 
+@HiltViewModel
 class CreateNoteViewModel @Inject constructor(
     private val repo: NoteRepository
 ) : ViewModel() {
@@ -36,11 +38,6 @@ class CreateNoteViewModel @Inject constructor(
         _uiState.value = s.copy(isSubmitting = true, errorMessage = null)
 
         return try {
-            // 🔽 레포 시그니처에 맞춰 호출
-            // 예1) repo.create(title, content)
-            // 예2) repo.create(NoteRequest(title, content))
-            // 예3) repo.createAndReturnId(title, content)
-
             repo.create(NoteEntity(title = s.title.trim(), content = s.content.trim()))
             _uiState.value = _uiState.value.copy(isSubmitting = false)
             true
