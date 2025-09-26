@@ -1,0 +1,16 @@
+flask
+flask-cors
+flask-smorest
+marshmallow
+flask-migrate
+sqlalchemy
+flask-limiter
+gunicorn
+pytest
+flake8
+
+
+# Hugging Face 모델용
+transformers
+torch
+sentencepiece
