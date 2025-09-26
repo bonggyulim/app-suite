@@ -7,6 +7,7 @@
 
 ## ✨ 주요 기능
 
+### 서버
 - **메모 CRUD API** (생성, 조회, 수정, 삭제)
 - **자동 요약 기능**: KoBART 기반 요약 모델 사용 (`EbanLee/kobart-summary-v3`)
 - **감정 분석 기능**: 다국어 BERT 기반 감정 분류 (`nlptown/bert-base-multilingual-uncased-sentiment`)
@@ -14,9 +15,18 @@
 - **데이터베이스**: SQLite (기본), SQLAlchemy ORM
 - **CORS 지원**: 프론트엔드와 연동 가능
 
+### 앱
+- **Google Sign-In** → Firebase Auth (ID Token으로 파이어베이스 인증)
+- **무한스크롤**: Paging3 + RemoteMediator + Compose
+- **풀-투-리프레시**: Accompanist SwipeRefresh
+- **의존성 주입**: Hilt
+- **네트워킹**: Retrofit + OkHttp
+
 ---
 
 ## 📂 프로젝트 구조
+
+### 서버
 
 ├── app.py # Flask 앱, REST API 엔드포인트 
 
@@ -25,6 +35,16 @@
 ├── note_summarize_model.py # HuggingFace 기반 KoBART 요약기
 
 ├── sentiment_model.py # HuggingFace 기반 BERT 감정 분석기
+
+
+### 앱
+├── presentation/     # Compose UI, ViewModel
+
+├── domain/           # Entity, Repository 인터페이스
+
+├── data/             # Remote(API), Local(Room), Repository 구현
+
+├── di/               # Hilt 모듈
 
 ---
 
